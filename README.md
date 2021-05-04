@@ -1,5 +1,4 @@
-# shaik_OUDSA5900
-Shehnaz Begum Shaik || 113476910 || Spring 2021
+# Social Media Analysis on Missing and Murdered Indigenous Women using Data Science & Analytics
 
 # Introduction	
 The National Crime Information Center reports that, in 2016, there are 5,712 cases of Missing and Murdered Indigenous Women and Girls (MMIWG). However, The US Department of Justice’s federal missing persons database, NamUs, only logged 116 cases. Despite growing knowledge about violence against women in general, knowledge concerning violence against Indigenous women is limited. The Center for Disease Control and Prevention has reported “Murder” to be the third-leading cause9 of death among American Indian (AI) and Alaska Native (AN) women. 
