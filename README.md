@@ -22,6 +22,7 @@ Fig 1. Overview of Data Ingestion method
 The data is extracted from Twitter API v2, using the endpoint “Full-archive search”. And the data is filtered using the endpoint parameters to obtain original English language tweets without any retweets and replies. Two data frames have been generated with the data obtained from Twitter namely, tweets_frame and user_loc_frame. The tweets_frame that contains 1,73,226 records with features such as tweet id, tweet text, tweet created_date, source, geo location, retweet_count, reply_count, like_count. 
 The statistics summary of the numerical columns is as below:
 ![image](https://user-images.githubusercontent.com/47012176/116958420-30c53300-ac60-11eb-8753-3501b3940b98.png)
+
 Fig 2. Statistics summary of numerical variables in tweets dataframe
 
 The above summary conveys that the average retweet, reply and like counts are 7, 0.39 and 9 respectively. Another result to notice here is maximum retweet count one of the tweets has is 12,550. And the most liked tweet has a like count of 45,688. 
@@ -30,7 +31,7 @@ There was missing data only in one feature i.e., geo that contains the location 
 
 ![image](https://user-images.githubusercontent.com/47012176/116958447-48042080-ac60-11eb-9398-822e07e40947.png)
 
-
+Fig 3. Missing Values in tweets dataframe
 Twitter user can be anywhere while tweeting, so this feature is of less significance to our analysis. This is the reason to create the user_loc_frame that contains the user’s generic location they update in their profile.
 
 User Location distribution:
@@ -67,11 +68,13 @@ Textblob which is built on NLTK is a simple interface that returns the polarity 
 
 ![image](https://user-images.githubusercontent.com/47012176/116958519-8ac5f880-ac60-11eb-8b6d-9fb4bd85a799.png)
 
+Fig 7. Sentiments results bar plot comparing Textblob and VADER
 From the above Fig 7, results of both models, it is evident that VADER performs better than textblob since the neutral sentiments are significantly less. Because a sentiment is classified neutral when no emotions are implied.
 Word clouds: Sentiment wise, most used words in the tweets
 
 ![image](https://user-images.githubusercontent.com/47012176/116958530-944f6080-ac60-11eb-859e-effa4bb3cd70.png)
 
+Fig 8. Wordclouds generated after VADER classification based on sentiment
 
 ## Text Summarization using NLTK
 When there is significantly large text data, which is associated with movement like MMIW, text summarization helps to identify the tweets that are concise and precise focusing on useful information from the entire text.
@@ -120,20 +123,24 @@ Topic 9,
   '0.017*"indigenous" + 0.017*"canada" + 0.016*"people" + 0.016*"canadian" + 0.013*"right" + 0.012*"child" + 0.012*"genocide" + 0.012*"indian" + 0.011*"want" + 0.010*"act"'
 ```
 ![image](https://user-images.githubusercontent.com/47012176/116958630-df697380-ac60-11eb-8f5f-28ff8aa05b71.png)
+
+Fig 10. LDA clusters visualization using pyLDAvis
 ### Terms in each Cluster/Topic:
 ![image](https://user-images.githubusercontent.com/47012176/116958643-eb553580-ac60-11eb-8dae-a927d2dabd17.png)
 
+Fig 11. LDA clusters visualization using pyLDAvis
 The top relevant terms for each cluster can be viewed here in Fig 11 and overall clustering can be seen in Fig 10. Zooming in is recommended to get a better view of understanding terms in each cluster. The above visualization shows the clusters evenly distributed throughout the four quadrants. There is only one visible overlap, which again poses a question is the num_topics = 10 most optimal for the model? To answer this question, coherence score can be plotted against the number of topics to learn what the optimal number of topics for this model, to perform better.
 
 ![image](https://user-images.githubusercontent.com/47012176/116958661-f740f780-ac60-11eb-9a0d-61ce17bd6862.png)
 
-
+Fig 12. Num Topics Vs Coherence Score
 ### Evaluating with Coherence score using cv:
-CV measure3 is based on a sliding window, a one-set segmentation of the top words and an indirect confirmation measure that uses normalized pointwise mutual information (NPMI) and the cosine similarity.
-From the graph Fig 11, optimal num topics is the one, at which the coherence score is maximum before a major drop, which is around 15 in this case.
+CV measure is based on a sliding window, a one-set segmentation of the top words and an indirect confirmation measure that uses normalized pointwise mutual information (NPMI) and the cosine similarity.
+From the graph Fig 12, optimal num topics is the one, at which the coherence score is maximum before a major drop, which is around 15 in this case.
 Final Model Results with num_topics = 15,
 
 ![image](https://user-images.githubusercontent.com/47012176/116958678-032cb980-ac61-11eb-838c-738f83843007.png)
+
 Fig 13. LDA clusters with optimal topics
 From the above visualization in Fig 13, with number of topics to be 15, the clusters have very minimal overlap, which means that the words are not repetitive among the topics. The words of each topic are analyzed thoroughly and labeled with a Topic name, which is further assigned to all the original tweets to classify the tweets into topics as seen in Fig 14. Most discussed topic seems to be about MMIW in Canada, National inquiry, police consultation, violence, racism, Highway of Tears15 (A news article related to this has been found), family crisis and so on.
 
